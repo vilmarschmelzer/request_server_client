@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<title>Pedidos</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-theme.css" />
+
+
+    <script src="{{ STATIC_URL }}js/jquery-2.1.4.min.js" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}js/requestapp.js" charset="utf-8"></script>
+    {% block js %}
+    {% endblock %}
+
+</head>
+<body>
+	<div>
+		<div class="navbar navbar-fixed-top navbar-inverse">
+            <div class="row">
+                <div class="col-sm-6 col-xs-7 col-md-10">
+                    <div class="row">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/">Pedidos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5 col-xs-4 col-md-2">
+                    <div class="row pull-right">
+                        <ul class="nav navbar-nav">
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+	</div>
+
+	<section class="container">
+        <div class="navbar navbar-default">
+            <ul class="nav navbar-nav">
+
+            </ul>
+        </div>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+	</section>
+	<footer>
+        <div class="navbar-inverse navbar-fixed-bottom">
+            <div class="row">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-rodape">
+                      <span class="sr-only">Pedidos</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar-rodape">
+
+                </div>
+            </div>
+        </div>
+	</footer>
+</body>
+</html>

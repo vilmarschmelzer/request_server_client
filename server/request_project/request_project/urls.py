@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
+from requestapp.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^media/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    url(r'^$', IndexView.as_view(), name='index'),
+
+    url(r'^category/$', CategorySaveView.as_view(), name='category-save'),
+    url(r'^category/(?P<category_id>\d+)/$', CategorySaveView.as_view(), name='category-save'),
 ]
