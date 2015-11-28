@@ -22,3 +22,7 @@ class CategoryManager(models.Manager):
             categories_page = paginator.page(paginator.num_pages)
 
         return categories_page
+
+    def get_actives(self):
+
+        return self.filter(active=True).all()

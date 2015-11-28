@@ -1,5 +1,6 @@
 from django.db import models
 from .category import Category
+from requestapp.manager import ItemManager
 
 
 class Item(models.Model):
@@ -8,6 +9,8 @@ class Item(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.ForeignKey(Category)
     active = models.BooleanField(default=True)
+
+    objects = ItemManager()
 
     class Meta:
         app_label = 'requestapp'

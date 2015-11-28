@@ -28,4 +28,8 @@ urlpatterns = [
     url(r'^category/(?P<category_id>\d+)/$', CategorySaveView.as_view(), name='category-save'),
     url(r'^category-list/$', CategoryListView.as_view(), name='category-list'),
 
+    url(r'^item/$', ItemSaveView.as_view(), name='item-save'),
+    url(r'^item/(?P<item_id>\d+)/$', ItemSaveView.as_view(), name='item-save'),
+    url(r'^item-list/$', ItemListView.as_view(), name='item-list'),
+
 ]

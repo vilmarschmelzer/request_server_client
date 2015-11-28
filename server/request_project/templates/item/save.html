@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ol class="breadcrumb">
+		<li><a href="{% url 'index'%}">Home</a></li>
+		<li class="active"><strong>Cadastro de item</strong></li>
+	</ol>
+
+    {% if form.instance.id %}
+        <form method="post" class="form-horizontal" action="{% url 'item-save' form.instance.id %}">
+    {% else %}
+        <form method="post" class="form-horizontal" action="{% url 'item-save' %}">
+    {% endif %}
+        {% csrf_token %}
+        <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+            <label class="control-label">Nome</label>
+
+	        <div>
+                {{ form.name}}
+                <span class="help-block">
+                    {% if form.name.errors %}
+                        {{ form.name.errors.as_text }}
+                    {% endif %}
+
+		        </span>
+
+	        </div>
+        </div>
+
+        <div class="form-group {% if form.description.errors %}has-error{% endif %}">
+            <label class="control-label">Descrição</label>
+
+	        <div>
+                {{ form.description}}
+                <span class="help-block">
+                    {% if form.description.errors %}
+                        {{ form.description.errors.as_text }}
+                    {% endif %}
+
+		        </span>
+
+	        </div>
+        </div>
+
+        <div class="form-group {% if form.price.errors %}has-error{% endif %}">
+            <label class="control-label">Preço</label>
+
+	        <div>
+                {{ form.price}}
+                <span class="help-block">
+                    {% if form.price.errors %}
+                        {{ form.price.errors.as_text }}
+                    {% endif %}
+
+		        </span>
+
+	        </div>
+        </div>
+
+        <div class="form-group {% if form.category.errors %}has-error{% endif %}">
+            <label class="control-label">Categoria</label>
+
+	        <div>
+                {{ form.category}}
+                <span class="help-block">
+                    {% if form.category.errors %}
+                        {{ form.category.errors.as_text }}
+                    {% endif %}
+		        </span>
+	        </div>
+        </div>
+
+        {% if form.instance.id %}
+            <div class="form-group">
+            <label class="control-label">Ativo</label>
+
+	        <div>
+                {{ form.active}}
+
+	        </div>
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-4">
+                <button type="submit" class="btn btn-primary pull-right" name="salvar"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

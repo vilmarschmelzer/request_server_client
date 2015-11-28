@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ol class="breadcrumb">
+		<li><a href="{% url 'index' %}">Home</a></li>
+		<li class="active"><strong>Itens</strong></li>
+	</ol>
+
+	<form method="post" class="form-inline" action="{% url 'item-list' %}">
+        {% csrf_token %}
+		<div class="row">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="input-group">
+                    <input type="text" name="search" class="form-control" value="{{ search }}"/>
+                    <span class="input-group-btn">
+
+						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+			</div>
+		</div>
+	</form>
+
+    <!-- Table -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Ativo</th>
+                </thead>
+                <tbody>
+                {% for item in items %}
+
+                    <tr>
+                        <td>
+                            {{ item.id }}
+                        </td>
+                        <td>
+                            <a class="btn btn-default" href="{% url 'item-save' item.id %}">
+                            {{ item.name }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ item.description }}
+                        </td>
+                        <td>
+                            {{ item.price }}
+                        </td>
+                        <td>
+                            {{ item.category }}
+                        </td>
+                        <td>
+                            {{ item.active }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+
+
+{% endblock %}
