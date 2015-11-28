@@ -1,2 +1,2 @@
 from .requestapp import IndexView
-from .category import CategorySaveView
+from .category import CategorySaveView, CategoryListView

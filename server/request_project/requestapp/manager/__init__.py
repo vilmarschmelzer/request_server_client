@@ -1,1 +1,1 @@
-__author__ = 'vilmar'
+from .category import CategoryManager

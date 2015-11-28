@@ -47,12 +47,10 @@ class CategoryListView(View):
 
             if 'search' in request.POST:
                 search = request.POST['search']
-
         else:
 
             if 'search' in request.GET:
                 search = request.GET['search']
-
         try:
             page = int(request.GET.get('page', 1))
 

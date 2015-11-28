@@ -26,4 +26,6 @@ urlpatterns = [
 
     url(r'^category/$', CategorySaveView.as_view(), name='category-save'),
     url(r'^category/(?P<category_id>\d+)/$', CategorySaveView.as_view(), name='category-save'),
+    url(r'^category-list/$', CategoryListView.as_view(), name='category-list'),
+
 ]

@@ -24,6 +24,8 @@ SECRET_KEY = '33+8%_c6jccg06+tdhg$1_3n*qlv1z&n9j57%kpyq7&-2a2-s_'
 
 ALLOWED_HOSTS = []
 
+PAGE_ROWS = 10
+
 
 # Application definition
 
