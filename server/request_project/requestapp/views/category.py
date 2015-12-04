@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from requestapp.forms.category import FormCategory
 from requestapp.models import Category
+from rest_framework.views import APIView
+from requestapp.serializer import CategorySerializer
+from .json_response import JSONResponse
 
 
 class CategorySaveView(View):
@@ -36,7 +39,7 @@ class CategorySaveView(View):
         return render(request, self.template, {'form': form})
 
 
-class CategoryListView(View):
+'''class CategoryListView(View):
 
     template_name = 'category/list.html'
 
@@ -65,4 +68,48 @@ class CategoryListView(View):
         return self.__page(request)
 
     def post(self, request):
-        return self.__page(request)
+        return self.__page(request)'''
+
+
+class CategoryListRestView(APIView):
+
+    def get(self, request):
+
+        category_page = Category.objects.get_page(1,'')
+        categories = CategorySerializer(list(category_page), many=True)
+        print(categories.data)
+        page = {'num_pages': category_page.paginator.num_pages, 'number': category_page.number, 'categories': categories.data}
+
+
+        return JSONResponse(page)
+
+    def post(self, request):
+
+        print(request.POST['search'])
+        print(request.POST['page'])
+        category_page = Category.objects.get_page(request.POST['page'],request.POST['search'])
+        categories = CategorySerializer(list(category_page), many=True)
+
+        page = {'num_pages': category_page.paginator.num_pages, 'number': category_page.number, 'categories': categories.data}
+
+        return JSONResponse(page)
+
+
+
+
+
+
+        return JSONResponse(serializer.data)
+
+
+class CategoryListView(View):
+
+    template = 'category/list_angular.html'
+
+    def get(self, request):
+
+        items = Category.objects.filter(name='category 2').all()
+
+        print(items)
+
+        return render(request, self.template, {'items_':items})

@@ -7,16 +7,15 @@
     <!-- Bootstrap -->
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-theme.css" />
-
-
     <script src="{{ STATIC_URL }}js/jquery-2.1.4.min.js" charset="utf-8"></script>
     <script src="{{ STATIC_URL }}js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}js/angular.min.js" charset="utf-8"></script>
     <script src="{{ STATIC_URL }}js/requestapp.js" charset="utf-8"></script>
     {% block js %}
     {% endblock %}
 
 </head>
-<body>
+<body {% block angularapp %}{% endblock %}>
 	<div>
 		<div class="navbar navbar-fixed-top navbar-inverse">
             <div class="row">

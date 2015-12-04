@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block js %}
+    <script src="{{ STATIC_URL }}js/angular/category.js" charset="utf-8"></script>
+{% endblock %}
+
+{% block angularapp %} ng-app="requestapp" {% endblock %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+		<li><a href="{% url 'index'%}">Home</a></li>
+		<li class="active"><strong>Consulta de categorias</strong></li>
+	</ol>
+
+    <div ng-controller="ListCategory" ng-init="loadItems()">
+
+        <form  class="form-inline" ng-submit="filter()">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" ng-model="search" name="category_filter"/>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                    <tr ng-repeat="item in page.categories">
+                        <td>
+                            {[{ item.id }]}
+                        </td>
+                        <td>
+                            {[{ item.name }]}
+                        </td>
+                        <td>
+                            <div class="pull-right">
+                                <span ng-class="{'glyphicon glyphicon-ok':item.active, '':!item.active}" style="margin-right: 10px;"></span>
+                                <a href="{% url 'category-save' %}{[{ item.id }]}/"><span class="glyphicon glyphicon-edit"></span></a>
+
+                            </div>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+{% endblock %}
