@@ -34,41 +34,9 @@ class CategorySaveView(View):
         if form.is_valid():
             form.save(request)
 
-            return redirect('/')
+            return redirect('category-list')
 
         return render(request, self.template, {'form': form})
-
-
-'''class CategoryListView(View):
-
-    template_name = 'category/list.html'
-
-    def __page(self, request):
-        search = ''
-
-        if request.method == 'POST':
-
-            if 'search' in request.POST:
-                search = request.POST['search']
-        else:
-
-            if 'search' in request.GET:
-                search = request.GET['search']
-        try:
-            page = int(request.GET.get('page', 1))
-
-        except:
-            page = 1
-
-        categories_page = Category.objects.get_page(page, search)
-
-        return render(request, self.template_name, {'categories': categories_page, 'search': search})
-
-    def get(self, request):
-        return self.__page(request)
-
-    def post(self, request):
-        return self.__page(request)'''
 
 
 class CategoryListRestView(APIView):
@@ -77,16 +45,12 @@ class CategoryListRestView(APIView):
 
         category_page = Category.objects.get_page(1,'')
         categories = CategorySerializer(list(category_page), many=True)
-        print(categories.data)
         page = {'num_pages': category_page.paginator.num_pages, 'number': category_page.number, 'categories': categories.data}
-
 
         return JSONResponse(page)
 
     def post(self, request):
 
-        print(request.POST['search'])
-        print(request.POST['page'])
         category_page = Category.objects.get_page(request.POST['page'],request.POST['search'])
         categories = CategorySerializer(list(category_page), many=True)
 
@@ -95,21 +59,10 @@ class CategoryListRestView(APIView):
         return JSONResponse(page)
 
 
-
-
-
-
-        return JSONResponse(serializer.data)
-
-
 class CategoryListView(View):
 
     template = 'category/list_angular.html'
 
     def get(self, request):
 
-        items = Category.objects.filter(name='category 2').all()
-
-        print(items)
-
-        return render(request, self.template, {'items_':items})
+        return render(request, self.template)

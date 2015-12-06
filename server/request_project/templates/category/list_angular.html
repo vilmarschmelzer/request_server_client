@@ -13,7 +13,7 @@
 		<li class="active"><strong>Consulta de categorias</strong></li>
 	</ol>
 
-    <div ng-controller="ListCategory" ng-init="loadItems()">
+    <div ng-controller="CategoryList" ng-init="loadItems()">
 
         <form  class="form-inline" ng-submit="filter()">
             <div class="form-group">
@@ -52,8 +52,19 @@
                     </tr>
             </table>
         </div>
-
-    </div>
+    <nav>
+        <ul class="pager">
+            <li class="previous">
+                <a href="" ng-click="previous()"><span aria-hidden="true">&larr;</span> Voltar</a>
+            </li>
+            <li class="next">
+                <a href="" ng-click="next()">Próximo <span aria-hidden="true">&rarr;</span></a>
+            </li>
+        </ul>
+    </nav>
+    <input type="hidden" ng-model="num_pages" name="num_pages" value="{[{ page.num_pages }]}"/>
+    <input type="hidden" ng-model="number" name="number" value="{[{ page.number }]}"/>
+</div>
 
 
 {% endblock %}

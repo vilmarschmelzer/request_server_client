@@ -15,7 +15,8 @@ class CategoryManager(models.Manager):
 
         categories = categories.order_by('name')
 
-        paginator = Paginator(categories, settings.PAGE_ROWS)
+        paginator = Paginator(categories, 1)
+        #paginator = Paginator(categories, settings.PAGE_ROWS)
         try:
             categories_page = paginator.page(page)
         except:

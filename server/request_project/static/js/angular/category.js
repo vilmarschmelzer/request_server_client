@@ -5,20 +5,18 @@ requestapp.config(function($interpolateProvider) {
     $interpolateProvider.endSymbol('}]}');
 });
 
-requestapp.controller('ListCategory', function ListCategory($scope, $log, $http){
+requestapp.controller('CategoryList', function ListCategory($scope, $log, $http){
     $scope.items = {}
 
     $scope.loadItems = function(){
-        $scope.items = $http.get('/category-list-rest/').then(function(response){
-            $scope.page = response.data;
-        });
+        $scope.filter(1);
     };
 
-    $scope.filter = function(){
+    $scope.filter = function(page_number){
 
         var data = $.param({
                 search: $scope.search,
-                page:1});
+                page:page_number});
 
             var config = {
                 headers : {
@@ -34,4 +32,21 @@ requestapp.controller('ListCategory', function ListCategory($scope, $log, $http)
 
         });
     };
+
+    $scope.next = function(){
+
+        page_number = $scope.page.number +1;
+        if(page_number <= $scope.page.num_pages)
+            $scope.filter(page_number);
+
+    };
+
+    $scope.previous = function(){
+
+        page_number = $scope.page.number -1;
+        if(page_number > 0)
+            $scope.filter(page_number);
+    };
+
+
 });
