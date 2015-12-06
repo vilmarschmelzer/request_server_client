@@ -5,8 +5,12 @@ requestapp.config(function($interpolateProvider) {
     $interpolateProvider.endSymbol('}]}');
 });
 
+requestapp.config(function($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+});
+
 requestapp.controller('CategoryList', function ListCategory($scope, $log, $http){
-    $scope.items = {}
 
     $scope.loadItems = function(){
         $scope.filter(1);

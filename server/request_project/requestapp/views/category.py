@@ -6,6 +6,7 @@ from requestapp.models import Category
 from rest_framework.views import APIView
 from requestapp.serializer import CategorySerializer
 from .json_response import JSONResponse
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
 class CategorySaveView(View):
@@ -40,6 +41,8 @@ class CategorySaveView(View):
 
 
 class CategoryListRestView(APIView):
+
+    permission_classes = (IsAuthenticated, AllowAny)
 
     def get(self, request):
 
